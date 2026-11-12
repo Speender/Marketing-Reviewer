@@ -1,0 +1,11 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "reviewer",
+      "runtimeExecutable": "powershell",
+      "runtimeArgs": ["-NoProfile", "-ExecutionPolicy", "Bypass", "-File", "C:/Users/ramie/AppData/Local/Temp/claude/524de3144b167ec1/45fec3bb-31b6-4c81-bba6-01904392c9ae/scratchpad/serve.ps1", "-Root", "C:/Users/ramie/OneDrive/Desktop/Marketing-Reviewer", "-Port", "8765"],
+      "port": 8765
+    }
+  ]
+}
