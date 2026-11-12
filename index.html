@@ -3,7 +3,9 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Marketing Exam Reviewer</title>
+<title>RMP Exam Reviewer</title>
+<script>window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };</script>
+<script defer src="/_vercel/insights/script.js"></script>
 <meta name="claude:viewport-fit-sides" content="cover">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Mono:wght@400;500&family=Source+Sans+3:ital,wght@0,400;0,600;0,700;1,400&display=swap">
 <style>
@@ -280,13 +282,27 @@ svg.venn .t2{font-size:14px}
   .brk .r{grid-template-columns:1fr 1fr 48px}
 }
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+.logo{color:var(--fg);text-decoration:none}
+.pghd{font-size:clamp(28px,4vw,38px);margin:4px 0 8px;letter-spacing:-.01em}
+.lead2{font-size:18px;color:var(--muted);max-width:70ch}
+.actions{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 4px}
+.prio a{grid-template-columns:minmax(64px,auto) 1fr auto}
+.chnav .navc{margin-top:10px;color:var(--accent)}
+.chnav .navby a{color:inherit}
+.chhead .num a{color:inherit}
+a.rm.subj{text-decoration:none;color:var(--fg)}
+a.rm.subj:hover{border-color:var(--accent)}
+a.rm.subj .by{font-size:14px;color:var(--muted)}
+tr.dim td{color:var(--muted)}
+code{font-family:var(--f-mono);font-size:13.5px;background:var(--surface2);padding:1px 5px;border-radius:4px;white-space:normal}
+@media (max-width:900px){.chnav .navc{display:none}}
 </style>
 </head>
 <body>
 
 
 <header class="top"><div class="wrap">
-  <div class="logo">Marketing Exam Reviewer<small>Keller: Brand Management &middot; Belch: Advertising and Promotion</small></div>
+  <a class="logo" href="#start">RMP Exam Reviewer<small>JA Philippines &middot; Nov 15, 2026 &middot; USJR</small></a>
   <nav class="tabs" id="tabs" aria-label="Sections"></nav>
 </div></header>
 <main class="wrap" id="view"></main>
@@ -2454,20 +2470,59 @@ EXA.essay = [
 
 
 </script>
+<script src="data/mm.js"></script>
+<script src="data/mm2.js"></script>
+<script src="data/em.js"></script>
+<script src="data/sv.js"></script>
+<script src="data/sf.js"></script>
 <script>
 (function(){
 'use strict';
 var CH = window.CH || [], EX = window.EX || {}, EXA = window.EXA || {};
+var BANK = window.BANK || {}; BANK.brand = EX; BANK.ad = EXA;
 CH.forEach(function(c){ if(!c.course) c.course='brand'; });
-var COURSES = {brand:{name:'Strategic Brand Management',by:'Keller',tag:'Brand',pre:'ch-'}, ad:{name:'Advertising and Promotion: An IMC Perspective',by:'Belch and Belch',tag:'Ad',pre:'ad-'}};
+var COURSES = {
+  mm:{name:'Marketing Management',by:'Kotler and Keller',tag:'MM',pre:'mm-',unit:'Topic'},
+  brand:{name:'Strategic Brand Management',by:'Keller',tag:'Brand',pre:'ch-',unit:'Ch',slides:true},
+  ad:{name:'Advertising and Promotion: An IMC Perspective',by:'Belch and Belch',tag:'Ad',pre:'ad-',unit:'Ch',slides:true},
+  em:{name:'E-Marketing',by:'Strauss and Frost',tag:'EM',pre:'em-',unit:'Topic'},
+  sv:{name:'Services Marketing',by:'Lovelock and Wirtz',tag:'Svc',pre:'sv-',unit:'Topic'},
+  sf:{name:'Sales Force Management',by:'Johnston and Marshall',tag:'Sales',pre:'sf-',unit:'Topic'}
+};
+var CORDER = ['mm','brand','ad','em','sv','sf'];
+var SUBJECTS = [
+  {n:1, time:'8:10 – 9:10 AM', name:'Marketing Insights and Strategy', short:'Insights', parts:[['mm',[1,2,3,4,5]]],
+   blurb:'How firms understand markets and choose where and how to compete: core marketing concepts, strategic planning, the marketing environment and research, consumer and business buying behavior, segmentation, targeting, positioning and competitive strategy.'},
+  {n:2, time:'9:20 – 10:20 AM', name:'Brand, Product and Partnership Management', short:'Brand', parts:[['brand',null],['mm',[6,7,8]]],
+   blurb:'Building and managing brands (Keller), plus product and service strategy, new products, pricing, and the channel partners and alliances a firm works through (Kotler and Keller).'},
+  {n:3, time:'10:30 – 11:30 AM', name:'Integrated Marketing Communications', short:'IMC', parts:[['ad',null],['em',[1,2,3]]],
+   blurb:'Planning coordinated communication across advertising, sales promotion, PR, direct and personal selling (Belch and Belch), plus digital strategy, online media and digital metrics (Strauss and Frost).'},
+  {n:4, time:'11:40 AM – 12:40 PM', name:'Customer Experiences and Retail Operations', short:'CX &amp; Retail', parts:[['sv',[1,2,3,4,5]],['mm',[9,10]]],
+   blurb:'Designing and delivering service experiences (Lovelock and Wirtz), customer value, satisfaction and loyalty, and retailing, wholesaling and logistics (Kotler and Keller).'},
+  {n:5, time:'12:50 – 1:50 PM', name:'Sales and Sales Management', short:'Sales', parts:[['sf',[1,2,3,4,5]]],
+   blurb:'The selling process and managing a sales force: organization, sizing and territories, forecasting and quotas, salesperson performance, recruiting, training, compensation and evaluation (Johnston and Marshall).'}
+];
+var SCHEDULE = [['7:00 – 8:00 AM','Registration',0],['8:00 – 8:10 AM','Classroom attendance and instructions',0],['8:10 – 9:10 AM','Marketing Insights and Strategy',1],['9:10 – 9:20 AM','Break',0],['9:20 – 10:20 AM','Brand, Product and Partnership Management',2],['10:20 – 10:30 AM','Break',0],['10:30 – 11:30 AM','Integrated Marketing Communications',3],['11:30 – 11:40 AM','Break',0],['11:40 AM – 12:40 PM','Customer Experiences and Retail Operations',4],['12:40 – 12:50 PM','Break',0],['12:50 – 1:50 PM','Sales and Sales Management',5],['1:50 – 2:00 PM','Closing',0]];
+var BOOKS = [
+  ['Advertising and Promotion: An IMC Perspective','Belch and Belch','8th ed. or higher (12th listed)','3','Chapter notes from your slides'],
+  ['E-Marketing','Strauss and Frost','5th ed. or higher (7th listed)','3','High-yield topics'],
+  ['Strategic Brand Management','Keller','3rd ed. or higher (5th listed)','2','Chapter notes from your slides'],
+  ['Marketing Management','Kotler and Keller','12th ed. or higher (16th listed)','1, 2, 4','High-yield topics'],
+  ['Services Marketing','Lovelock and Wirtz','7th ed. or higher (9th listed)','4','High-yield topics'],
+  ['Sales Force Management','Johnston and Marshall','7th ed. or higher (13th listed)','5','High-yield topics']
+];
+function courseChs(course, ns){ return CH.filter(function(c){ return c.course===course && (!ns || ns.indexOf(c.n)>-1); }).sort(function(a,b){return a.n-b.n;}); }
+function subjChs(s){ return s.parts.reduce(function(a,p){ return a.concat(courseChs(p[0],p[1])); },[]); }
+function subjOf(course,n){ return SUBJECTS.filter(function(s){ return s.parts.some(function(p){ return p[0]===course && (!p[1]||p[1].indexOf(n)>-1); }); })[0]; }
 function chHref(c){ return '#'+COURSES[c.course].pre+c.n; }
 function findCh(course,n){ return CH.filter(function(x){return x.course===course && x.n===n;})[0]; }
-function chLabel(course,n){ return COURSES[course].tag+' Ch '+n; }
+function chLabel(course,n){ var C=COURSES[course]; return C.tag+' '+C.unit+' '+n; }
 var $ = function(s, el){ return (el||document).querySelector(s); };
 var $$ = function(s, el){ return Array.prototype.slice.call((el||document).querySelectorAll(s)); };
 function esc(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
 function strip(s){ return String(s).replace(/<[^>]+>/g,''); }
 function pad(n){ return n<10 ? '0'+n : ''+n; }
+function arr(x){ return x||[]; }
 
 /* ---------- visuals ---------- */
 var V = {
@@ -2539,87 +2594,101 @@ function table(t){
 }
 function chapterView(course, n){
   var c = findCh(course,n); if(!c) return '<p>Chapter not found.</p>';
-  var list = CH.filter(function(x){return x.course===course;}), idx=list.indexOf(c), prev=list[idx-1], next=list[idx+1];
-  var nav = '<nav class="chnav" aria-label="Chapters"><div class="eyebrow navby">'+COURSES[course].by+' &middot; '+COURSES[course].name+'</div>'+list.map(function(x){
-    return '<a href="'+chHref(x)+'"'+(x===c?' aria-current="page"':'')+'><b>'+pad(x.n)+'</b><span>'+x.short+'</span></a>'; }).join('')+'</nav>';
+  var C = COURSES[course], s = subjOf(course,n);
+  var list = s ? subjChs(s) : courseChs(course), idx=list.indexOf(c), prev=list[idx-1], next=list[idx+1];
+  var lastCourse='';
+  var nav = '<nav class="chnav" aria-label="Chapters in this subject">'+(s?'<div class="eyebrow navby"><a href="#s'+s.n+'">Subject '+s.n+'</a> &middot; '+s.name+'</div>':'')+list.map(function(x){
+    var hd=''; if(x.course!==lastCourse){ lastCourse=x.course; hd='<div class="eyebrow navby navc">'+COURSES[x.course].by+' &middot; '+COURSES[x.course].name+'</div>'; }
+    return hd+'<a href="'+chHref(x)+'"'+(x===c?' aria-current="page"':'')+'><b>'+pad(x.n)+'</b><span>'+x.short+'</span></a>'; }).join('')+'</nav>';
+  var unitWord = C.unit==='Ch' ? 'Chapter' : 'Topic';
   var h = '<article>'+
-    '<header class="chhead"><div class="num">'+COURSES[course].by+' &middot; Chapter '+c.n+' &middot; '+prioChip(c.priority)+'</div><h2>'+c.title+'</h2><p>'+c.overview+'</p><p class="why">'+c.why+'</p></header>';
-  h += '<section class="blk"><div class="grid2"><div class="card"><div class="eyebrow">Learning objectives</div><ul class="tight">'+c.objectives.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div>'+
-       '<div class="know"><h4>Know this cold</h4><ul>'+c.know.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div></div></section>';
-  h += '<section class="blk"><h3><span class="mono">Terms</span>Key terms and definitions</h3><dl class="terms">'+c.terms.map(function(t){return '<dt>'+t[0]+'</dt><dd>'+t[1]+'</dd>';}).join('')+'</dl></section>';
-  h += '<section class="blk"><h3><span class="mono">Notes</span>Detailed study notes</h3>'+c.notes.map(function(s){
-      return '<div class="sub"><h4>'+s.h+'</h4>'+s.html+(s.v?s.v.map(vis).join(''):'')+(s.tbl?table(s.tbl):'')+'</div>'; }).join('')+'</section>';
-  h += '<section class="blk"><h3><span class="mono">Philippine lens</span>Applying it locally</h3><div class="grid2">'+c.ph.map(function(p){
-      return '<div class="ph"><h4><span class="tag">'+p[0]+'</span></h4><p>'+p[1]+'</p></div>'; }).join('')+'</div><p class="note-src">Philippine examples are illustrative applications written for study. They are not taken from the slides, and the positioning described is an interpretation, not company data.</p></section>';
-  h += '<section class="blk"><h3><span class="mono">Watch out</span>Commonly confused</h3><div class="grid2">'+c.confused.map(function(p){
+    '<header class="chhead"><div class="num">'+(s?'<a href="#s'+s.n+'">Subject '+s.n+'</a> &middot; ':'')+C.by+' &middot; '+unitWord+' '+c.n+' &middot; '+prioChip(c.priority)+'</div><h2>'+c.title+'</h2><p>'+c.overview+'</p>'+(c.why?'<p class="why">'+c.why+'</p>':'')+
+    (C.slides?'':'<p class="note-src">High-yield summary written from the standard content of '+C.by+', <em>'+C.name+'</em>. Topic numbers are this reviewer\'s own, not the book\'s chapter numbers. Wording and lists can differ slightly between editions, so check your copy if something looks different.</p>')+'</header>';
+  h += '<section class="blk"><div class="grid2"><div class="card"><div class="eyebrow">Learning objectives</div><ul class="tight">'+arr(c.objectives).map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div>'+
+       '<div class="know"><h4>Know this cold</h4><ul>'+arr(c.know).map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div></div></section>';
+  if(arr(c.terms).length) h += '<section class="blk"><h3><span class="mono">Terms</span>Key terms and definitions</h3><dl class="terms">'+c.terms.map(function(t){return '<dt>'+t[0]+'</dt><dd>'+t[1]+'</dd>';}).join('')+'</dl></section>';
+  if(arr(c.notes).length) h += '<section class="blk"><h3><span class="mono">Notes</span>Detailed study notes</h3>'+c.notes.map(function(s){
+      return '<div class="sub"><h4>'+s.h+'</h4>'+(s.html||'')+(s.v?s.v.map(vis).join(''):'')+(s.tbl?table(s.tbl):'')+'</div>'; }).join('')+'</section>';
+  if(arr(c.ph).length) h += '<section class="blk"><h3><span class="mono">Philippine lens</span>Applying it locally</h3><div class="grid2">'+c.ph.map(function(p){
+      return '<div class="ph"><h4><span class="tag">'+p[0]+'</span></h4><p>'+p[1]+'</p></div>'; }).join('')+'</div><p class="note-src">'+(C.slides?'Philippine examples are illustrative applications written for study. They are not taken from the slides, and the positioning described is an interpretation, not company data.':'Philippine examples are illustrative applications written for study. They are not taken from the textbook and are not company data.')+'</p></section>';
+  if(arr(c.confused).length) h += '<section class="blk"><h3><span class="mono">Watch out</span>Commonly confused</h3><div class="grid2">'+c.confused.map(function(p){
       return '<div class="misc"><h4>'+p[0]+'</h4><p>'+p[1]+'</p></div>'; }).join('')+'</div></section>';
-  h += '<section class="blk"><h3><span class="mono">Memory aids</span>Mnemonics and tips</h3><div class="grid2">'+c.mnemonics.map(function(p){
+  if(arr(c.mnemonics).length) h += '<section class="blk"><h3><span class="mono">Memory aids</span>Mnemonics and tips</h3><div class="grid2">'+c.mnemonics.map(function(p){
       return '<div class="mem"><h4>'+p[0]+'</h4><p class="m">'+p[1]+'</p><p style="margin:0;font-size:15px">'+p[2]+'</p></div>'; }).join('')+'</div></section>';
-  h += '<section class="blk"><h3><span class="mono">Recap</span>Key takeaways</h3><div class="card"><ul class="tight take">'+c.takeaways.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div></section>';
-  h += '<div class="pager"><div>'+(prev?'<a class="btn ghost" href="'+chHref(prev)+'">&larr; Ch '+prev.n+'</a>':'')+'</div>'+
-       '<button class="btn" data-practice="'+course+'-'+c.n+'">Practice Chapter '+c.n+' questions</button>'+
-       '<div>'+(next?'<a class="btn ghost" href="'+chHref(next)+'">Ch '+next.n+' &rarr;</a>':'')+'</div></div></article>';
+  if(arr(c.takeaways).length) h += '<section class="blk"><h3><span class="mono">Recap</span>Key takeaways</h3><div class="card"><ul class="tight take">'+c.takeaways.map(function(o){return '<li>'+o+'</li>';}).join('')+'</ul></div></section>';
+  function lab(x){ return x.course===course ? (C.unit+' '+x.n) : chLabel(x.course,x.n); }
+  h += '<div class="pager"><div>'+(prev?'<a class="btn ghost" href="'+chHref(prev)+'">&larr; '+lab(prev)+'</a>':'')+'</div>'+
+       '<button class="btn" data-practice="ch-'+course+'-'+c.n+'">Practice '+unitWord+' '+c.n+' questions</button>'+
+       '<div>'+(next?'<a class="btn ghost" href="'+chHref(next)+'">'+lab(next)+' &rarr;</a>':'')+'</div></div></article>';
   return '<div class="split">'+nav+h+'</div>';
 }
 
+/* ---------- question counting ---------- */
+function countQs(scope){ var keep=ES.scope; ES.scope=scope; var u=buildUnits(); ES.scope=keep; return u.filter(function(x){return x.part!=='essay';}).length; }
+
+/* ---------- subject page ---------- */
+function chLink(c){ return '<a href="'+chHref(c)+'"><b>'+COURSES[c.course].tag+' '+pad(c.n)+'</b><span>'+c.short+'</span>'+prioChip(c.priority)+'</a>'; }
+function subjectView(n){
+  var s=SUBJECTS[n-1]; if(!s) return '<p>Subject not found.</p>';
+  var first=subjChs(s)[0];
+  var h='<div class="eyebrow">Subject '+s.n+' of 5 &middot; '+s.time+' &middot; 60 minutes</div><h2 class="pghd">'+s.name+'</h2><p class="lead2">'+s.blurb+'</p>'+
+    '<div class="actions">'+(first?'<a class="btn" href="'+chHref(first)+'">Start reading</a>':'')+'<button class="btn ghost" data-practice="subj-'+s.n+'">Practice exam: Subject '+s.n+' ('+countQs('subj-'+s.n)+' items)</button></div>';
+  s.parts.forEach(function(p){ var C=COURSES[p[0]], list=courseChs(p[0],p[1]);
+    h+='<h3 class="coursehd">'+C.name+' <span>'+C.by+'</span></h3><div class="prio">'+list.map(chLink).join('')+'</div>'; });
+  h+='<section class="blk" style="margin-top:30px"><h3>Know this cold for Subject '+s.n+'</h3><div class="grid2">'+subjChs(s).map(function(c){
+    return '<div class="know"><h4><a href="'+chHref(c)+'" style="color:inherit">'+chLabel(c.course,c.n)+' &middot; '+c.short+'</a></h4><ul>'+arr(c.know).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'; }).join('')+'</div></section>';
+  var fx=(window.FORMULAS||[]).filter(function(f){return f.subj===s.n;});
+  if(fx.length) h+='<section class="blk"><h3>Formulas for Subject '+s.n+'</h3>'+formulaTable(fx)+'</section>';
+  return h;
+}
+function formulaTable(fx){ return table({cols:['Measure','Formula','Worked example'], rows:fx.map(function(f){ return ['<b>'+f.name+'</b>', '<code>'+f.f+'</code>', f.ex]; })}); }
+
 /* ---------- start page ---------- */
 function startView(){
-  function link(course,n){ var c=findCh(course,n); if(!c) return ''; return '<a class="ch" href="'+chHref(c)+'"><b>'+pad(n)+'</b><span>'+c.short+'</span></a>'; }
-  function prioList(course){ return CH.filter(function(c){return c.course===course;}).sort(function(a,b){ var o={'High-yield':0,'Core':1,'Support':2}; return o[a.priority]-o[b.priority] || a.n-b.n; }).map(function(c){
-      return '<a href="'+chHref(c)+'"><b>'+pad(c.n)+'</b><span>'+c.short+'</span>'+prioChip(c.priority)+'</a>'; }).join(''); }
-  var nb=CH.filter(function(c){return c.course==='brand';}).length, na=CH.filter(function(c){return c.course==='ad';}).length;
-  return '<section class="hero"><div><div class="eyebrow">Exam prep package &middot; built from your '+(nb+na)+' slide decks</div>'+
-    '<h1>Brand management and advertising, one reviewer</h1>'+
-    '<p class="lead">Two courses from your uploads: Keller\'s <em>Strategic Brand Management</em> ('+nb+' chapters) and Belch and Belch\'s <em>Advertising and Promotion: An IMC Perspective</em> ('+na+' chapters). Each has chapter notes, diagrams, memory aids, glossary terms and scored practice questions.</p>'+
-    '<div class="actions"><a class="btn" href="#ch-1">Brand Management Ch 1</a><a class="btn" href="#ad-1">Advertising Ch 1</a><a class="btn ghost" href="#exam">Take the practice exam</a><a class="btn ghost" href="#cheats">Cheat sheets</a></div></div>'+
-    '<div class="card"><div class="eyebrow">How to use it</div><ol class="how tight"><li>Read a chapter, then use <b>Know this cold</b> as your recall test.</li><li>Practice that chapter\'s questions from the button at the bottom.</li><li>Review weak chapters from the exam score breakdown.</li><li>Use <b>Cheat sheets</b> and <b>Glossary</b> the night before.</li></ol>'+
-    '<p class="note-src">Priority labels reflect how much emphasis the slides place on a chapter (definitions, frameworks, lists). They are study guidance, not knowledge of real exam questions.</p></div></section>'+
-    '<h2 class="coursehd">Course 1 &middot; Strategic Brand Management <span>Keller</span></h2>'+
-    '<div class="eyebrow">Course map &middot; Keller\'s four-step Strategic Brand Management process</div>'+
-    '<div class="roadmap">'+
-      '<div class="rm foundation"><span class="st" style="width:100%">Foundation and wrap-up</span>'+link('brand',1)+link('brand',15)+'</div>'+
-      '<div class="rm"><span class="st">Step 1</span><h4>Identify and establish brand positioning and values</h4>'+link('brand',2)+link('brand',3)+'</div>'+
-      '<div class="rm"><span class="st">Step 2</span><h4>Plan and implement brand marketing programs</h4>'+link('brand',4)+link('brand',5)+link('brand',6)+link('brand',7)+'</div>'+
-      '<div class="rm"><span class="st">Step 3</span><h4>Measure and interpret brand performance</h4>'+link('brand',8)+link('brand',9)+link('brand',10)+'</div>'+
-      '<div class="rm"><span class="st">Step 4</span><h4>Grow and sustain brand equity</h4>'+link('brand',11)+link('brand',12)+link('brand',13)+link('brand',14)+'</div>'+
-    '</div>'+
-    '<details class="prio-d"><summary>Suggested study order by emphasis</summary><div class="prio">'+prioList('brand')+'</div></details>'+
-    '<h2 class="coursehd">Course 2 &middot; Advertising and Promotion: An IMC Perspective <span>Belch and Belch</span></h2>'+
-    '<div class="eyebrow">Course map &middot; grouped by the book\'s flow</div>'+
-    '<div class="roadmap">'+
-      '<div class="rm"><span class="st">Foundations</span><h4>IMC, the marketing process and agencies</h4>'+link('ad',1)+link('ad',2)+link('ad',3)+'</div>'+
-      '<div class="rm"><span class="st">How it works</span><h4>Consumers, communication and persuasion</h4>'+link('ad',4)+link('ad',5)+link('ad',6)+'</div>'+
-      '<div class="rm"><span class="st">Message and media</span><h4>Creative strategy and media</h4>'+link('ad',8)+link('ad',9)+link('ad',10)+link('ad',11)+link('ad',12)+link('ad',13)+'</div>'+
-      '<div class="rm"><span class="st">Tools and context</span><h4>Other IMC tools, measurement, global, law and ethics</h4>'+link('ad',14)+link('ad',15)+link('ad',16)+link('ad',17)+link('ad',18)+link('ad',19)+link('ad',20)+link('ad',21)+link('ad',22)+'</div>'+
-    '</div>'+
-    '<details class="prio-d"><summary>Suggested study order by emphasis</summary><div class="prio">'+prioList('ad')+'</div></details>'+
-    '<p class="note-src" style="margin-top:14px">Scope note: the advertising decks you uploaded skip Chapter 7 (objectives and budgeting), so it is not covered. Topics outside both sets of slides appear only where a chapter marks them as beyond the slides.</p>';
+  var h='<section class="hero"><div><div class="eyebrow">JA Philippines &middot; Registered Marketing Professional</div>'+
+    '<h1>RMP Certification Exam reviewer</h1>'+
+    '<p class="lead">November 15, 2026 &middot; University of San Jose &ndash; Recoletos. Five 60-minute subjects, in the same order as the exam day. Each subject has study notes, memory aids, formulas and practice questions with explanations, drawn from the six recommended textbooks.</p>'+
+    '<div class="actions"><a class="btn" href="#s1">Start with Subject 1</a><a class="btn ghost" href="#exam">Practice exam</a><a class="btn ghost" href="#cheats">Cheat sheets</a></div></div>'+
+    '<div class="card"><div class="eyebrow">How to use the next two days</div><ol class="how tight"><li>Go subject by subject. Read the <b>High-yield</b> topics first.</li><li>Use <b>Know this cold</b> as a recall test. Cover it and say it out loud.</li><li>Take each subject\'s practice exam with the <b>60-minute timer</b>.</li><li>Re-read the topics flagged in your score breakdown.</li><li>Night before: <b>Cheat sheets</b>, the formula sheet, and flashcards in the <b>Glossary</b>.</li></ol>'+
+    '<p class="note-src">About the questions: no past RMP papers are publicly available. Every question here is an original practice item written from the recommended textbooks in the exam\'s theory and case-analysis style. They are not actual exam questions.</p></div></section>';
+  h+='<h2 class="coursehd">Exam day schedule <span>from the official flow</span></h2><div class="tscroll"><table><thead><tr><th>Time</th><th>Particular</th><th>In this reviewer</th></tr></thead><tbody>'+
+    SCHEDULE.map(function(r){ var s=r[2]?SUBJECTS[r[2]-1]:null; return '<tr'+(s?'':' class="dim"')+'><td>'+r[0]+'</td><td>'+(s?'<b>'+r[1]+'</b>':r[1])+'</td><td>'+(s?'<a href="#s'+s.n+'">Subject '+s.n+'</a> &middot; '+subjChs(s).length+' topics &middot; '+countQs('subj-'+s.n)+' practice items':'')+'</td></tr>'; }).join('')+'</tbody></table></div>';
+  h+='<h2 class="coursehd">The five subjects <span>study in this order</span></h2><div class="grid3 subjgrid">'+SUBJECTS.map(function(s){
+    return '<a class="rm subj" href="#s'+s.n+'"><span class="st">Subject '+s.n+' &middot; '+s.time+'</span><h4>'+s.name+'</h4><span class="by">'+s.parts.map(function(p){return COURSES[p[0]].by;}).join(' + ')+'</span></a>'; }).join('')+'</div>';
+  h+='<h2 class="coursehd">Recommended textbooks <span>JA Philippines list</span></h2>'+table({cols:['Book','Authors','Edition','Subject(s)','Coverage here'], rows:BOOKS.map(function(b){ return ['<em>'+b[0]+'</em>',b[1],b[2],b[3],b[4]]; })})+
+    '<p class="note-src">JA Philippines does not publish which book feeds which subject. The subject mapping above is this reviewer\'s judgment from the subject titles. Keller and Belch notes come from your uploaded slides. The other four books are summarized from their standard content.</p>';
+  return h;
 }
 
 /* ---------- cheat sheets ---------- */
 function cheatView(){
-  var h = '<div class="eyebrow">Cheat sheets</div><h2 style="font-size:34px;margin-bottom:6px">Last-night review</h2><p style="color:var(--muted)">Everything here is pulled from the chapter pages, so it stays in sync with the notes.</p>';
-  h += '<section class="blk" style="margin-top:22px"><h3>Know this cold, chapter by chapter</h3><div class="grid2">'+CH.map(function(c){
-    return '<div class="know"><h4><a href="'+chHref(c)+'" style="color:inherit">'+chLabel(c.course,c.n)+' &middot; '+c.short+'</a></h4><ul>'+c.know.map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'; }).join('')+'</div></section>';
-  h += '<section class="blk"><h3>All mnemonics</h3><div class="grid3">'+CH.reduce(function(a,c){ return a.concat(c.mnemonics.map(function(m){ return '<div class="mem"><div class="eyebrow">'+chLabel(c.course,c.n)+'</div><h4>'+m[0]+'</h4><p class="m">'+m[1]+'</p><p style="margin:0;font-size:14.5px">'+m[2]+'</p></div>'; })); },[]).join('')+'</div></section>';
-  h += '<section class="blk"><h3>Commonly confused pairs</h3><div class="grid2">'+CH.reduce(function(a,c){ return a.concat(c.confused.map(function(m){ return '<div class="misc"><div class="eyebrow">'+chLabel(c.course,c.n)+'</div><h4>'+m[0]+'</h4><p style="margin:0">'+m[1]+'</p></div>'; })); },[]).join('')+'</div></section>';
+  var h = '<div class="eyebrow">Cheat sheets</div><h2 class="pghd">Last-night review</h2><p style="color:var(--muted)">Everything here is pulled from the topic pages, so it stays in sync with the notes.</p>';
+  var fx=window.FORMULAS||[];
+  if(fx.length) h+='<section class="blk" style="margin-top:22px"><h3>Formula sheet</h3>'+SUBJECTS.map(function(s){ var f=fx.filter(function(x){return x.subj===s.n;}); return f.length?'<h4 style="margin:14px 0 4px">Subject '+s.n+' &middot; '+s.name+'</h4>'+formulaTable(f):''; }).join('')+'</section>';
+  SUBJECTS.forEach(function(s){
+    h += '<section class="blk"><h3>Subject '+s.n+' &middot; '+s.name+': know this cold</h3><div class="grid2">'+subjChs(s).map(function(c){
+      return '<div class="know"><h4><a href="'+chHref(c)+'" style="color:inherit">'+chLabel(c.course,c.n)+' &middot; '+c.short+'</a></h4><ul>'+arr(c.know).map(function(x){return '<li>'+x+'</li>';}).join('')+'</ul></div>'; }).join('')+'</div></section>';
+  });
+  var ordered = SUBJECTS.reduce(function(a,s){ return a.concat(subjChs(s).filter(function(c){return a.indexOf(c)<0;})); },[]);
+  h += '<section class="blk"><h3>All mnemonics</h3><div class="grid3">'+ordered.reduce(function(a,c){ return a.concat(arr(c.mnemonics).map(function(m){ return '<div class="mem"><div class="eyebrow">'+chLabel(c.course,c.n)+'</div><h4>'+m[0]+'</h4><p class="m">'+m[1]+'</p><p style="margin:0;font-size:14.5px">'+m[2]+'</p></div>'; })); },[]).join('')+'</div></section>';
+  h += '<section class="blk"><h3>Commonly confused pairs</h3><div class="grid2">'+ordered.reduce(function(a,c){ return a.concat(arr(c.confused).map(function(m){ return '<div class="misc"><div class="eyebrow">'+chLabel(c.course,c.n)+'</div><h4>'+m[0]+'</h4><p style="margin:0">'+m[1]+'</p></div>'; })); },[]).join('')+'</div></section>';
   if(window.CHEATS){ h += window.CHEATS.map(function(t){ return '<section class="blk"><h3>'+t.title+'</h3>'+table(t)+'</section>'; }).join(''); }
   return h;
 }
 
 /* ---------- glossary + flashcards ---------- */
 var FC = {on:false, i:0, back:false, deck:[]};
-function allTerms(){ var out=[]; CH.forEach(function(c){ c.terms.forEach(function(t){ out.push({ch:chLabel(c.course,c.n),t:t[0],d:t[1]}); }); }); return out; }
+function allTerms(){ var out=[]; CH.forEach(function(c){ arr(c.terms).forEach(function(t){ out.push({ch:chLabel(c.course,c.n),t:t[0],d:t[1]}); }); }); return out; }
 function glossView(){
   var terms = allTerms();
-  var h = '<div class="eyebrow">Glossary</div><h2 style="font-size:34px;margin-bottom:6px">'+terms.length+' terms</h2>'+
+  return '<div class="eyebrow">Glossary</div><h2 class="pghd">'+terms.length+' terms</h2>'+
     '<div class="toolbar"><input class="search" id="gq" type="search" placeholder="Search terms or definitions" aria-label="Search glossary"><button class="btn ghost" id="fcbtn">Flashcard mode</button></div><div id="gbody"></div>';
-  return h;
 }
 function glossBody(){
   var q = ($('#gq')||{value:''}).value.toLowerCase().trim();
   var terms = allTerms().filter(function(x){ return !q || (x.t+' '+strip(x.d)).toLowerCase().indexOf(q)>-1; });
   if(FC.on){
+    if(!terms.length) return '<p>No matching terms.</p>';
     if(!FC.deck.length){ FC.deck = terms.slice().sort(function(){return Math.random()-.5;}); FC.i=0; FC.back=false; }
     var c = FC.deck[FC.i % FC.deck.length];
     return '<div class="fc"><div class="eyebrow" style="text-align:center">Card '+(FC.i%FC.deck.length+1)+' of '+FC.deck.length+' &middot; '+c.ch+' &middot; tap card to flip</div>'+
@@ -2631,26 +2700,32 @@ function glossBody(){
 }
 
 /* ---------- exam ---------- */
-var ES = {scope:'full', mode:'exam', seed:1, units:[], res:{}, done:false};
+var ES = {scope:'subj-1', mode:'exam', seed:1, units:[], res:{}, done:false};
 function hashStr(s){ var h=2166136261; for(var i=0;i<s.length;i++){ h^=s.charCodeAt(i); h=Math.imul(h,16777619); } return h>>>0; }
 function rng(seed){ var a=seed; return function(){ a|=0; a=a+0x6D2B79F5|0; var t=Math.imul(a^a>>>15,1|a); t=t+Math.imul(t^t>>>7,61|t)^t; return ((t^t>>>14)>>>0)/4294967296; }; }
 function shuffle(arr, seed){ var r=rng(seed), a=arr.slice(); for(var i=a.length-1;i>0;i--){ var j=Math.floor(r()*(i+1)); var t=a[i]; a[i]=a[j]; a[j]=t; } return a; }
-function norm(s){ return String(s).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9\s]/g,' ').replace(/\b(the|a|an|of|to)\b/g,' ').replace(/\s+/g,' ').trim(); }
+function norm(s){ return String(s).toLowerCase().replace(/&/g,' and ').replace(/[^a-z0-9.\s]/g,' ').replace(/\b(the|a|an|of|to)\b/g,' ').replace(/\s+/g,' ').trim(); }
 var PARTS = [
-  ['mcq','Part I &middot; Multiple choice','One best answer. Covers definitions, frameworks and lists from every chapter.'],
+  ['mcq','Part I &middot; Multiple choice','One best answer. Covers definitions, frameworks and lists.'],
   ['tf','Part II &middot; True or false','Decide if the statement is correct as written. Many are built on commonly confused ideas.'],
-  ['id','Part III &middot; Identification','Type the term, framework or concept being described. Spelling variations are accepted when the key words match.'],
+  ['id','Part III &middot; Identification','Type the term, framework or concept being described (or the number, for computations). Spelling variations are accepted when the key words match.'],
   ['match','Part IV &middot; Matching','Match each item on the left to the best choice on the right.'],
-  ['app','Part V &middot; Application and analysis','Short scenarios. Choose the concept or action that best fits.'],
+  ['app','Part V &middot; Application, analysis and computation','Short scenarios and problems. Choose the concept, action or figure that best fits.'],
   ['case','Part VI &middot; Case-based questions','Read the case, then answer the questions that follow.'],
   ['essay','Part VII &middot; Short essay (self-checked)','Write your own answer on paper first, then reveal the model answer and tick what you covered. Not part of the auto-score.']
 ];
+function inScope(course,ch){
+  var scope=ES.scope;
+  if(scope==='full'||scope==='mini') return true;
+  var sm=scope.match(/^subj-(\d)$/);
+  if(sm){ var s=SUBJECTS[+sm[1]-1]; return s.parts.some(function(p){ return p[0]===course && (!p[1] || ch.some(function(n){return p[1].indexOf(n)>-1;})); }); }
+  var m=scope.split('-'); return m[1]===course && ch.indexOf(+m[2])>-1;
+}
 function buildUnits(){
-  var units=[], scope=ES.scope;
-  function inScope(course,ch){ if(scope==='full'||scope==='mini') return true; if(scope==='brand'||scope==='ad') return course===scope; var m=scope.split('-'); return m[1]===course && ch.indexOf(+m[2])>-1; }
+  var units=[];
   PARTS.forEach(function(p){
-   [['brand',EX],['ad',EXA]].forEach(function(bank){
-    var course=bank[0], k=p[0], list=bank[1][k]||[], pre=course+'-';
+   CORDER.forEach(function(course){
+    var k=p[0], list=(BANK[course]||{})[k]||[], pre=course+'-';
     list.forEach(function(it,i){
       if(!inScope(course,it.ch)) return;
       if(k==='case'){ it.qs.forEach(function(q,j){ units.push({course:course,part:'case',key:pre+'case'+i+'-'+j,ch:it.ch,q:q.q,ok:q.ok,no:q.no,why:q.why,caseId:pre+i,caseFirst:j===0,caseTitle:it.title,caseText:it['case'],kind:'mcq'}); }); }
@@ -2662,9 +2737,9 @@ function buildUnits(){
     });
    });
   });
-  if(scope==='mini'){
+  if(ES.scope==='mini'){
     var scored = units.filter(function(u){return u.part!=='essay'&&u.part!=='match';});
-    var pick = shuffle(scored, ES.seed*7+3).slice(0,25).map(function(u){return u.key;});
+    var pick = shuffle(scored, ES.seed*7+3).slice(0,30).map(function(u){return u.key;});
     units = units.filter(function(u){ return pick.indexOf(u.key)>-1; });
   }
   return units;
@@ -2675,7 +2750,7 @@ function unitHTML(u, n){
   if(u.kind==='mcq'){
     var opts=[{t:u.ok,ok:1}].concat(u.no.map(function(t){return {t:t,ok:0};}));
     opts = u.fixed ? [{t:'True',ok:u.ok==='True'?1:0},{t:'False',ok:u.ok==='False'?1:0}] : shuffle(opts, hashStr(u.key)+ES.seed);
-    h+='<div class="opts">'+opts.map(function(o,i){ return '<label class="opt" data-ok="'+o.ok+'"><input type="radio" name="'+u.key+'" value="'+i+'"><span class="ltr">'+(u.fixed?(i?'F':'T'):'ABCD'[i])+'</span><span>'+o.t+'</span></label>'; }).join('')+'</div>';
+    h+='<div class="opts">'+opts.map(function(o,i){ return '<label class="opt" data-ok="'+o.ok+'"><input type="radio" name="'+u.key+'" value="'+i+'"><span class="ltr">'+(u.fixed?(i?'F':'T'):'ABCDE'[i])+'</span><span>'+o.t+'</span></label>'; }).join('')+'</div>';
   } else if(u.kind==='id'){
     h+='<input class="idin" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" placeholder="Type your answer" aria-label="Your answer" id="in-'+u.key+'">';
   } else if(u.kind==='match'){
@@ -2693,16 +2768,17 @@ function unitHTML(u, n){
 function examView(){
   ES.units = buildUnits(); ES.res={}; ES.done=false;
   function opt(v,l){ return '<option value="'+v+'"'+(ES.scope===v?' selected':'')+'>'+l+'</option>'; }
-  var chOpts = ['brand','ad'].map(function(co){ return '<optgroup label="'+COURSES[co].name+' chapters">'+CH.filter(function(c){return c.course===co;}).map(function(c){ return opt('ch-'+co+'-'+c.n, chLabel(co,c.n)+' only &middot; '+c.short); }).join('')+'</optgroup>'; }).join('');
+  var subjOpts = SUBJECTS.map(function(s){ return opt('subj-'+s.n,'Subject '+s.n+' &middot; '+s.name); }).join('');
+  var chOpts = SUBJECTS.map(function(s){ return '<optgroup label="Subject '+s.n+' topics">'+subjChs(s).map(function(c){ return opt('ch-'+c.course+'-'+c.n, chLabel(c.course,c.n)+' only &middot; '+c.short); }).join('')+'</optgroup>'; }).join('');
   var counts = ES.units.filter(function(u){return u.part!=='essay';}).reduce(function(a,u){return a+unitMax(u);},0);
-  var h = '<div class="eyebrow">Practice exam</div><h2 style="font-size:34px;margin-bottom:6px">Comprehensive practice examination</h2>'+
-    '<p style="color:var(--muted);max-width:70ch">Questions are written from your slides. Options are shuffled each attempt. <b>Exam mode</b> hides feedback until you submit. <b>Practice mode</b> shows the answer and explanation as soon as you respond.</p>'+
+  var h = '<div class="eyebrow">Practice exam</div><h2 class="pghd">RMP practice examination</h2>'+
+    '<p style="color:var(--muted);max-width:72ch">Original practice items written from the recommended textbooks, not actual RMP questions. Options are shuffled each attempt. <b>Exam mode</b> hides feedback until you submit. <b>Practice mode</b> shows the answer and explanation as soon as you respond. Each real subject runs 60 minutes, so use the timer to practice pacing.</p>'+
     '<div class="card"><div class="examcfg">'+
-    '<label>Scope<select id="scope">'+opt('full','Full exam: both courses')+opt('brand','Brand Management exam only')+opt('ad','Advertising and Promotion exam only')+opt('mini','Mini exam (25 random, both courses)')+chOpts+'</select></label>'+
+    '<label>Scope<select id="scope"><optgroup label="By exam subject">'+subjOpts+'</optgroup><optgroup label="Mixed">'+opt('mini','Mini exam (30 random, all subjects)')+opt('full','Everything (all subjects)')+'</optgroup>'+chOpts+'</select></label>'+
     '<label>Mode<select id="mode"><option value="exam"'+(ES.mode==='exam'?' selected':'')+'>Exam mode (grade at end)</option><option value="practice"'+(ES.mode==='practice'?' selected':'')+'>Practice mode (instant feedback)</option></select></label>'+
     '<div><button class="btn" id="restart">Restart with new shuffle</button></div></div></div>'+
-    '<div class="score" id="scorebar"><span class="big" id="sc">0 / '+counts+'</span><span class="mono" id="sct">'+ES.units.length+' items &middot; <span id="ansn">0</span> answered</span><div class="progress"><i id="prog"></i></div><button class="btn" id="submit">Submit and grade</button></div><div id="result"></div>';
-  var n=0, lastPart='', lastCase=-1;
+    '<div class="score" id="scorebar"><span class="big" id="sc">0 / '+counts+'</span><span class="mono" id="sct">'+ES.units.length+' items &middot; <span id="ansn">0</span> answered</span><div class="progress"><i id="prog"></i></div><button class="btn ghost" id="timer" type="button">Start 60:00 timer</button><button class="btn" id="submit">Submit and grade</button></div><div id="result"></div>';
+  var n=0;
   PARTS.forEach(function(p){
     var us=ES.units.filter(function(u){return u.part===p[0];}); if(!us.length) return;
     h+='<div class="part"><h3>'+p[1]+'</h3><p>'+p[2]+'</p></div>';
@@ -2712,9 +2788,18 @@ function examView(){
       h+=unitHTML(u,n);
     });
   });
+  if(!ES.units.length) h+='<p>No questions for this scope yet.</p>';
   return h;
 }
-function unitOf(el){ var key=el.closest('.q').getAttribute('data-key'); return ES.units.filter(function(u){return u.key===key;})[0]; }
+var TM=null;
+function stopTimer(){ if(TM){ clearInterval(TM); TM=null; } }
+function startTimer(btn){
+  stopTimer(); var end=Date.now()+60*60000;
+  function tick(){ var left=Math.max(0,end-Date.now()), m=Math.floor(left/60000), s=Math.floor(left%60000/1000);
+    btn.textContent='Time left '+m+':'+pad(s)+' (stop)';
+    if(!left){ stopTimer(); btn.textContent='Time is up'; if(!ES.done) submitExam(); } }
+  tick(); TM=setInterval(tick,1000);
+}
 function reveal(box){
   var u = ES.units.filter(function(x){return x.key===box.getAttribute('data-key');})[0]; if(!u||box.dataset.done) return;
   var fb=$('.fb',box), got=0, max=unitMax(u), msg='';
@@ -2726,7 +2811,7 @@ function reveal(box){
     fb.className='fb '+(chosen?'ok':'no');
   } else if(u.kind==='id'){
     var inp=$('input',box), v=norm(inp.value); inp.disabled=true;
-    var hit = v.length>1 && u.a.some(function(a){ var na=norm(a); return v===na || (na.length>3 && v.indexOf(na)>-1) || (v.length>4 && na.indexOf(v)===0 && v.length>=na.length*0.8); });
+    var hit = v.length>0 && u.a.some(function(a){ var na=norm(a); return v===na || (na.length>3 && v.indexOf(na)>-1) || (v.length>4 && na.indexOf(v)===0 && v.length>=na.length*0.8); });
     got = hit?1:0;
     msg = '<b class="v">'+(hit?'Correct. ':'Compare your answer. ')+'</b>Accepted answer: <b>'+u.a[0]+'</b>. '+u.why+(hit?'':'<div style="margin-top:8px"><button class="btn sm ghost" data-override="'+u.key+'">I had it right, count it</button></div>');
     fb.className='fb '+(hit?'ok':'no');
@@ -2758,6 +2843,7 @@ function updateScore(){
   sc.textContent = (ES.done || ES.mode==='practice' || Object.keys(ES.res).length) ? got+' / '+max : '0 / '+max;
 }
 function submitExam(){
+  stopTimer();
   $$('.q').forEach(function(b){ reveal(b); });
   ES.done=true; updateScore();
   var byPart={}, byCh={}, got=0, max=0;
@@ -2766,15 +2852,15 @@ function submitExam(){
     byPart[pn]=byPart[pn]||[0,0]; byPart[pn][0]+=r.got; byPart[pn][1]+=r.max;
     u.ch.forEach(function(c){ var k=u.course+':'+c; byCh[k]=byCh[k]||[0,0]; byCh[k][0]+=r.got; byCh[k][1]+=r.max; }); });
   function chk(k){ var p=k.split(':'); return {course:p[0], n:+p[1]}; }
-  function ord(a,b){ var x=chk(a), y=chk(b); return (x.course===y.course?0:(x.course==='brand'?-1:1)) || x.n-y.n; }
+  function ord(a,b){ var x=chk(a), y=chk(b); return (CORDER.indexOf(x.course)-CORDER.indexOf(y.course)) || x.n-y.n; }
   var pct = max? Math.round(got/max*100):0;
-  var verdict = pct>=85?'Strong. Keep sharpening the weak spots below.':(pct>=70?'Solid base. Review the chapters flagged below.':(pct>=50?'Getting there. Re-read the flagged chapters, then retake a chapter set.':'Start with the High-yield chapters, then retake the mini exam.'));
+  var verdict = pct>=85?'Strong. Keep sharpening the weak spots below.':(pct>=70?'Solid base. Review the topics flagged below.':(pct>=50?'Getting there. Re-read the flagged topics, then retake this subject.':'Start with the High-yield topics, then retake this subject.'));
   function row(label,a,b,href){ var p=b?Math.round(a/b*100):0; return '<div class="r"><span>'+(href?'<a href="'+href+'">'+label+'</a>':label)+'</span><div class="bar"><i class="'+(p<60?'low':'')+'" style="width:'+p+'%"></i></div><span>'+p+'%</span></div>'; }
   var chRows = Object.keys(byCh).sort(ord).map(function(k){ var q=chk(k), ch=findCh(q.course,q.n); return row(chLabel(q.course,q.n)+' &middot; '+(ch?ch.short:''), byCh[k][0], byCh[k][1], ch?chHref(ch):''); }).join('');
   var weak = Object.keys(byCh).filter(function(c){ return byCh[c][1]>=2 && byCh[c][0]/byCh[c][1]<0.7; }).sort(function(a,b){return byCh[a][0]/byCh[a][1]-byCh[b][0]/byCh[b][1];});
   $('#result').innerHTML='<div class="result"><div class="eyebrow">Your result</div><div class="num">'+got+' / '+max+' <span style="font-size:24px">('+pct+'%)</span></div><p style="margin:8px 0 0">'+verdict+'</p>'+
     (weak.length?'<p style="margin:8px 0 0"><b>Review first:</b> '+weak.map(function(k){ var q=chk(k), ch=findCh(q.course,q.n); return ch?'<a href="'+chHref(ch)+'">'+chLabel(q.course,q.n)+'</a>':k; }).join(', ')+'</p>':'')+
-    '<div class="brk"><div class="eyebrow" style="margin:10px 0 0">By part</div>'+Object.keys(byPart).map(function(k){return row(k,byPart[k][0],byPart[k][1]);}).join('')+'<div class="eyebrow" style="margin:10px 0 0">By chapter</div>'+chRows+'</div>'+
+    '<div class="brk"><div class="eyebrow" style="margin:10px 0 0">By part</div>'+Object.keys(byPart).map(function(k){return row(k,byPart[k][0],byPart[k][1]);}).join('')+'<div class="eyebrow" style="margin:10px 0 0">By topic</div>'+chRows+'</div>'+
     '<div style="margin-top:14px;display:flex;gap:10px;flex-wrap:wrap"><button class="btn" id="restart2">Retake with new shuffle</button><button class="btn ghost" id="wrongonly">Show only items I missed</button></div></div>';
   $('#result').scrollIntoView({behavior:'smooth',block:'start'});
   $('#submit').disabled=true;
@@ -2784,12 +2870,12 @@ function wireExam(){
   $('#mode').addEventListener('change',function(e){ ES.mode=e.target.value; render(); });
   $('#restart').addEventListener('click',function(){ ES.seed++; render(); });
   $('#submit').addEventListener('click',submitExam);
+  $('#timer').addEventListener('click',function(){ if(TM){ stopTimer(); this.textContent='Start 60:00 timer'; } else if(!ES.done){ startTimer(this); } });
   var v=$('#view');
   if(!window.__examWired){ window.__examWired=true;
   v.addEventListener('change',function(e){
     var box=e.target.closest&&e.target.closest('.q'); if(!box) return;
     if(e.target.matches('input[type=radio]') && ES.mode==='practice' && box.getAttribute('data-kind')==='mcq') reveal(box);
-    if(e.target.matches('.rubric input')){ /* self-check only */ }
     updateScore();
   });
   v.addEventListener('input',function(e){ if(e.target.matches('.idin')) updateScore(); });
@@ -2804,21 +2890,25 @@ function wireExam(){
   }
   if(ES.mode==='exam'){ $$('[data-check]').forEach(function(b){ if(b.textContent.indexOf('Check')===0) b.hidden=true; }); }
 }
-function submitExamRefresh(){ var d=$('#submit'); if(d){ d.disabled=false; } var keep=ES.res; submitExam(); }
+function submitExamRefresh(){ var d=$('#submit'); if(d){ d.disabled=false; } submitExam(); }
 
 /* ---------- router ---------- */
-var TABS = [['start','Start'],['ch-1','Brand Mgmt'],['ad-1','Advertising'],['cheats','Cheat sheets'],['terms','Glossary'],['exam','Practice exam']];
+var TABS = [['start','Start'],['s1','1 &middot; Insights'],['s2','2 &middot; Brand'],['s3','3 &middot; IMC'],['s4','4 &middot; CX &amp; Retail'],['s5','5 &middot; Sales'],['cheats','Cheat sheets'],['terms','Glossary'],['exam','Practice exam']];
 function render(){
+  stopTimer();
   var hash = (location.hash||'#start').slice(1) || 'start';
   var view = $('#view'), cur = 'start', html = '';
-  var m = hash.match(/^(ch|ad)-(\d+)$/);
-  if(m){ cur=m[1]+'-1'; html=chapterView(m[1]==='ad'?'ad':'brand', +m[2]); }
+  var sm = hash.match(/^s([1-5])$/), cm = null;
+  CORDER.forEach(function(k){ var pre=COURSES[k].pre; if(!cm && hash.indexOf(pre)===0 && /^\d+$/.test(hash.slice(pre.length))) cm=[k,+hash.slice(pre.length)]; });
+  if(sm){ cur='s'+sm[1]; html=subjectView(+sm[1]); }
+  else if(cm){ var s=subjOf(cm[0],cm[1]); cur=s?'s'+s.n:'start'; html=chapterView(cm[0],cm[1]); }
   else if(hash==='cheats'){ cur='cheats'; html=cheatView(); }
   else if(hash==='terms'){ cur='terms'; html=glossView(); }
   else if(hash==='exam'){ cur='exam'; html=examView(); }
   else { html=startView(); }
   view.innerHTML = html;
   $('#tabs').innerHTML = TABS.map(function(t){ return '<a href="#'+t[0]+'"'+(t[0]===cur?' aria-current="page"':'')+'>'+t[1]+'</a>'; }).join('');
+  var curTab=$('#tabs [aria-current="page"]'); if(curTab && curTab.scrollIntoView){ try{ curTab.scrollIntoView({block:'nearest',inline:'nearest'}); }catch(e){} }
   if(cur==='terms'){
     FC.deck=[]; var upd=function(){ $('#gbody').innerHTML=glossBody(); wireFC(); }; upd();
     $('#gq').addEventListener('input',function(){ FC.deck=[]; upd(); });
@@ -2831,12 +2921,12 @@ function render(){
       $('#fcshuf').addEventListener('click',function(){ FC.deck=[]; upd(); }); }
   }
   if(cur==='exam') wireExam();
-  document.title = 'Marketing Exam Reviewer';
-  if(!(cur==='exam' && ES.suppressScroll)) window.scrollTo(0,0);
+  document.title = 'RMP Exam Reviewer';
+  window.scrollTo(0,0);
 }
 document.addEventListener('click',function(e){
   var b=e.target.closest&&e.target.closest('[data-practice]');
-  if(b){ ES.scope='ch-'+b.getAttribute('data-practice'); ES.seed++; location.hash='#exam'; if(location.hash==='#exam') render(); }
+  if(b){ ES.scope=b.getAttribute('data-practice'); ES.seed++; if(location.hash==='#exam') render(); else location.hash='#exam'; }
 });
 window.addEventListener('hashchange',render);
 render();
